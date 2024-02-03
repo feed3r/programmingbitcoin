@@ -5,3 +5,6 @@
 *.orig
 *.rej
 *.patch
+.ipynb_checkpoints/all-checkpoint.asciidoc
+.ipynb_checkpoints/ix-checkpoint.html
+.ipynb_checkpoints/titlepage-checkpoint.html
