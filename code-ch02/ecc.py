@@ -142,7 +142,9 @@ class Point:
 
     def __ne__(self, other):
         # this should be the inverse of the == operator
-        raise NotImplementedError
+        return not(self.x == other.x and self.y == other.y \
+            and self.a == other.a and self.b == other.b)
+
 
     def __repr__(self):
         if self.x is None:
@@ -163,7 +165,9 @@ class Point:
         # end::source3[]
 
         # Case 1: self.x == other.x, self.y != other.y
-        # Result is point at infinity
+        if self.x == other.x and self.y != other.y:
+            # Result is point at infinity
+            return self.__class__(None, None, self.a, self.b)  # <5>
 
         # Case 2: self.x ≠ other.x
         # Formula (x3,y3)==(x1,y1)+(x2,y2)
@@ -177,7 +181,6 @@ class Point:
         # x3=s**2-2*x1
         # y3=s*(x1-x3)-y1
 
-        raise NotImplementedError
 
 
 class PointTest(TestCase):
