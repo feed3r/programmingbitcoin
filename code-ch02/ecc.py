@@ -174,14 +174,28 @@ class Point:
         # s=(y2-y1)/(x2-x1)
         # x3=s**2-x1-x2
         # y3=s*(x1-x3)-y1
+        if self.x != other.x:
+            s = (other.y - self.y) / (other.x - self.x)
+            x3 = s**2 - self.x - other.x
+            y3 = s*(self.x-x3)-self.y
+            return self.__class__(x3, y3, self.a, self.b)  # <6>
 
         # Case 3: self == other
         # Formula (x3,y3)=(x1,y1)+(x1,y1)
         # s=(3*x1**2+a)/(2*y1)
         # x3=s**2-2*x1
         # y3=s*(x1-x3)-y1
+        if self == other:
+            s = (3*self.x**2 + self.a) / (2*self.y)
+            x3 = s**2 - 2*self.x
+            y3 = s*(self.x-x3)-self.y
+            return self.__class__(x3, y3, self.a, self.b)
 
-
+        # Another special case: if the two points are equals
+        # (P1 == P2) and the y coordinate is 0,
+        # then the result is the point at infinity
+        if self == other and self.y == 0 * self.x:
+            return self.__class__(None, None, self.a, self.b)
 
 class PointTest(TestCase):
 
