@@ -221,8 +221,6 @@ class Point:
     # end::source3[]
 
 
-
-
 class PointTest(TestCase):
 
     def test_ne(self):
@@ -537,4 +535,3 @@ class PrivateKeyTest(TestCase):
         z = randint(0, 2 ** 256)
         sig = pk.sign(z)
         self.assertTrue(pk.point.verify(z, sig))
-
